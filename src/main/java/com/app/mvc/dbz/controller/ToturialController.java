@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.mvc.dbz.entities.Tutorial;
 import com.app.mvc.dbz.services.TutorialService;
 
-
-
 @Controller
 public class ToturialController {
 	@Autowired
@@ -28,16 +26,42 @@ public class ToturialController {
 	}
 
 	@PostMapping("/create")
-	public String createTutorial(@RequestParam("title") String title, @RequestParam("description") String description) {
-		tutorialService.createTutorial(title, description);
+	public String createTutorial(@RequestParam("title") String title, @RequestParam("description") String description,
+			@RequestParam("count") String count) {
+		tutorialService.createTutorial(title, description,count);
 		return "index";
 
 	}
+
 	@GetMapping("/tutorial/{id}")
 	public String deleteTutorial(@PathVariable int id) {
-		String result ="redirect:/tutorial";
+		String result = "redirect:/tutorial";
 		tutorialService.delectTutorial(id);
 		return result;
 	}
-	
+
+	@GetMapping("/editTutorial/{id}")
+	public String editTutorial(@PathVariable("id") int id, Model model) {
+		String result = "tutorial/update-tutorial";
+		Tutorial tutorial = tutorialService.getTutorialById(id);
+		model.addAttribute("tutorial", tutorial);
+		return result;
+	}
+
+	@PostMapping("/updateTutotrial")
+	public String updateTutotrial(Tutorial tutotrial) {
+		String result = "redirect:/tutorial";
+		tutorialService.updateTutorialById(tutotrial);
+		return result;
+
+	}
+
+	@GetMapping("/searchTutorial")
+	public String searchTutorial(@RequestParam("searchKey") String searchKey, Model model) {
+		List<Tutorial> tutorials = tutorialService.searchTutorial(searchKey);
+		model.addAttribute("tutorialList", tutorials);
+		model.addAttribute("keySearch", searchKey);
+		return "tutorial/index";
+	}
+
 }

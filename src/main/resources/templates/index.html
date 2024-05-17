@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Demo</title>
+	<title>Demo</title>
 </head>
+
 <body>
-		<h3>Create new tutorial</h3>
-		<form th:action="@{/create}" method="post">
-			<label>title:</label>
-			<input type="text" id="title" name="title" class="form-control"/><br>
-			<label>description:</label>
-			<input type="text" id="description" name="description" class="form-control"/>
-			<input type="submit" value="Create"/>
-		</form>
-</tbody>
-</table>
-</div>
-<a href="/tutorial">Tutorial</a>
+	<h3>Create new tutorial</h3>
+	<form th:action="@{/create}" method="post">
+		<label>title:</label>
+		<input type="text" id="title" name="title" class="form-control" /><br>
+		<label>description:</label>
+		<input type="text" id="description" name="description" class="form-control" />
+		<label>count:</label>
+		<input type="text" id="count" name="count" class="form-control" /><br>
+		<input type="submit" value="Create" />
+	</form>
+	</tbody>
+	</table>
+	</div>
+	<a href="/tutorial">Tutorial</a>
 </body>
+
 </html>

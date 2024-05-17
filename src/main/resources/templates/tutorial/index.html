@@ -25,6 +25,13 @@
 
 <body>
 	<h3>HOME</h3>
+	<div>
+		<form class="form-search" method="get" th:action="@{/searchTutorial}">
+			<input id="searchKey" type="search" name="searchKey" th:value="${searchKey}" class="form-control">
+			<button type="submit">Search</button>
+			
+		</form>
+	</div>
 	<table>
 		<tr>
 			<th>ID</th>
@@ -34,18 +41,18 @@
 			<th>DELECT</th>
 		</tr>
 		<tr th:each="dto:${tutorialList}">
-			<td>[[${dto.id}]] </td>
+
+			<td>[[${dto.id}]]</td>
 			<td>[[${dto.title}]] </td>
 			<td>[[${dto.description}]] </td>
-			<td><button class="btn">UPDATE</button></td>
-			 <td><a th:href="@{'/tutorial/' + ${dto.id}}">DELECT</a></td>
+			<td><a th:href="@{/editTutorial/{id}(id = ${dto.id})}">UPDATE</a></td>
+			<td><a th:href="@{'/tutorial/' + ${dto.id}}">DELECT</a></td>
+
 
 		</tr>
 	</table>
 
-	</tbody>
-	</table>
-	</div>
+
 </body>
 
 </html>
